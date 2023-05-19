@@ -27,7 +27,7 @@ class Set:
         return_val = self.data.copy()
         for element in other:
             if element not in return_val:
-                return_val.data.append(element)
+                return_val.append(element)
         return Set(return_val)
 
     def __and__(self, other):

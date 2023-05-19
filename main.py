@@ -28,9 +28,7 @@ print(A[2])
 def n_as_Set(n):
     if n == 0:
         return s.Set([])
-    else:
-        prev = n_as_Set(n-1)
-        return prev.__or__(s.Set[prev])
+    return n_as_Set(n - 1) | s.Set([n_as_Set(n - 1)])
 
 
 print(n_as_Set(0))
