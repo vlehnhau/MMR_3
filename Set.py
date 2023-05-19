@@ -23,6 +23,13 @@ class Set:
                 return_val.append(i)
         return Set(return_val)
 
+    def __or__(self, other):
+        return_val = self.data.copy()
+        for element in other:
+            if element not in return_val:
+                return_val.data.append(element)
+        return Set(return_val)
+
     def __and__(self, other):
         return_val = []
         for i in self.data:
