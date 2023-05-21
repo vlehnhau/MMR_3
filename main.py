@@ -36,3 +36,8 @@ print(n_as_Set(1))
 print(n_as_Set(2))
 print(n_as_Set(3))
 print(n_as_Set(15))
+
+
+print(str(s.Set([0]).power_set()))
+my_set = s.Set([1, 2, 3])
+print(my_set.power_set())

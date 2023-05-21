@@ -11,10 +11,13 @@ class Set:
         if not self.data:
             return "∅"
         return_val = "{"
-        for i in range(len(self.data)-1):
+        for i in range(len(self.data) - 1):
             return_val = return_val + str(self.data[i]) + ", "
-        return_val = return_val + str(self.data[len(self.data)-1]) + "}"
+        return_val = return_val + str(self.data[len(self.data) - 1]) + "}"
         return return_val
+
+    def __repr__(self):
+        return str(self)
 
     def __add__(self, other):
         return_val = self.data
@@ -62,3 +65,11 @@ class Set:
 
     def __getitem__(self, item):
         return self.data.__getitem__(item)
+
+    def power_set(self):
+        if not self.data:
+            return Set([Set([])])
+        element = self.data.pop()
+        prev_power_set = Set(self.data).power_set()
+        return prev_power_set | Set([subset | Set([element]) for subset in prev_power_set])
+
