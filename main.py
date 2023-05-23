@@ -41,3 +41,26 @@ print(n_as_Set(15))
 print(str(s.Set([0]).power_set()))
 my_set = s.Set([1, 2, 3])
 print(my_set.power_set())
+
+
+def binomialCoefficients(num):
+    power = s.Set(list(range(num))).power_set()
+    return_val = []
+
+    if num == 0:
+        return [1]
+
+    return_val.append(1)
+
+    for k in range(1, num + 1):
+        counter = 0
+        for element in power:
+            if len(element) == k:
+                counter += 1
+        return_val.append(counter)
+
+    return return_val
+
+print(s.Set(list(range(3))).power_set())
+print(binomialCoefficients(3))
+
