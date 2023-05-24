@@ -64,3 +64,9 @@ def binomialCoefficients(num):
 print(s.Set(list(range(3))).power_set())
 print(binomialCoefficients(3))
 
+# Aufgabe 3.1.3
+
+a = s.Set([1,2,3])
+b = s.Set([4,5,6])
+
+print(a*b)

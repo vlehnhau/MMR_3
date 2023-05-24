@@ -73,3 +73,15 @@ class Set:
         prev_power_set = Set(self.data).power_set()
         return prev_power_set | Set([subset | Set([element]) for subset in prev_power_set])
 
+    def __mul__(self, other):
+        return_val = []
+        set_a = self.data
+        set_b = other.data
+        for a in set_a:
+            for b in set_b:
+                return_val.append((a, b))
+        return xSet(return_val)
+
+
+class xSet(Set):
+    pass
