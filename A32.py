@@ -28,13 +28,36 @@ class MainWidget(qtw.QWidget):
 
         self.x1, self.x2, self.y1, self.y2 = -2, 1, -1, 1
 
-        self.movestart = qtc.QPoint(0, 0)
-        self.startcoordinate = qtc.QPoint(0, 0)
-        self.oldpos = qtc.QPoint(0, 0)
-
         self.n_max = 100
 
         self.gen()
+
+    def keyPressEvent(self, event):
+        if event.key() == qtc.Qt.Key.Key_Plus:
+            zoom_fac = 0.95
+
+            x_mid = self.x2 - 0.5 * abs(self.x1 - self.x2)
+            y_mid = self.y2 - 0.5 * abs(self.y2 - self.y1)
+
+            self.x1 = zoom_fac * (self.x1 - x_mid) + x_mid
+            self.y2 = zoom_fac * (self.y2 - y_mid) + y_mid
+            self.x2 = zoom_fac * (self.x2 - x_mid) + x_mid
+            self.y1 = zoom_fac * (self.y1 - y_mid) + y_mid
+
+            self.gen()
+
+        elif event.key() == qtc.Qt.Key.Key_Minus:
+            zoom_fac = 1 / 0.95
+
+            x_mid = self.x2 - 0.5 * abs(self.x1 - self.x2)
+            y_mid = self.y2 - 0.5 * abs(self.y2 - self.y1)
+
+            self.x1 = zoom_fac * (self.x1 - x_mid) + x_mid
+            self.y2 = zoom_fac * (self.y2 - y_mid) + y_mid
+            self.x2 = zoom_fac * (self.x2 - x_mid) + x_mid
+            self.y1 = zoom_fac * (self.y1 - y_mid) + y_mid
+
+            self.gen()
 
 
     def gen(self):
@@ -94,7 +117,8 @@ class MainWidget(qtw.QWidget):
         #                                                                    qtc.Qt.AspectRatioMode.KeepAspectRatio))
 
 
-def main():
+
+if __name__ == '__main__':
     app = qtw.QApplication(sys.argv)
     width = 900
     height = 600
@@ -107,7 +131,3 @@ def main():
 
     window.show()
     sys.exit(app.exec())
-
-
-if __name__ == '__main__':
-    main()
