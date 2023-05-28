@@ -70,3 +70,53 @@ a = s.Set([1,2,3])
 b = s.Set([4,5,6])
 
 print(a*b)
+
+#Aufgabe 3.1.5
+
+# persons = s.Set(["Alice", "Bob", "Charles", "Denise", "Eric"])
+# likes = s.Relation([("Alice", "Bob"), ("Alice", "Denise"), ("Bob", "Alice"), ("Denise", "Charles"), ("Eric", "Eric")])
+# testLikes = s.XmagY(persons, likes)
+# testLikes.addLike("Denise", "Eric")
+#
+# print(testLikes.pLikes("Alice"))
+# print(testLikes.pIsLikedBy("Alice"))
+# print(testLikes.checkEquivalenceRelation(persons))
+#
+# persons2 = s.Set(["A", "B"])
+# likes2 = s.Relation([("A", "A"), ("A", "B"), ("B", "A"), ("B", "B")])
+# testLikes2 = s.XmagY(persons2, likes2)
+# print(testLikes2.checkEquivalenceRelation(persons2))
+#
+#
+# n = s.smallerEqual()
+# print(str(n))
+
+print("Beziehungen")
+relationship = s.Relationships()
+print(relationship)
+# print(type(relationship))
+print(relationship.checkEquivalenceRelation(s.Set(["Alice", "Bob", "Charles", "Denise", "Eric"])))
+
+print("Ordnungen. SmallerEqual")
+ordersSmallerEqual = s.Orders("smallerEqual")
+print(ordersSmallerEqual)
+print(ordersSmallerEqual.checkEquivalenceRelation(s.Set(list(range(0,101)))))
+
+print("Ordnungen. Smaller")
+ordersSmaller = s.Orders("smaller")
+print(ordersSmaller)
+print(ordersSmaller.checkEquivalenceRelation(s.Set(list(range(0,101)))))
+
+print("Ordnungen. Equal")
+ordersEqual = s.Orders("equal")
+print(ordersEqual)
+print(ordersEqual.checkEquivalenceRelation(s.Set(list(range(0,101)))))
+
+print("Restklassenring")
+rest5 = s.Remainder(5)
+print(rest5)
+print(rest5.checkEquivalenceRelation(s.Set(list(range(0,101)))))
+
+
+
+print(s.equivalenceClasses(s.Relation([(1,1),(1,2),(2,2),(2,1),(3,3),(3,4),(4,4),(4,3)]), s.Set([1,2,3,4])))
