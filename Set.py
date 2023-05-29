@@ -84,6 +84,8 @@ class Set:
                 return_val.append((a, b))
         return xSet(return_val)
 
+    def __setitem__(self, index, value):
+        self.data[index] = value
 
 class xSet(Set):
     pass
@@ -203,7 +205,7 @@ def Orders(type: str):
         print("type must be: smallerEqual, smaller or equal")
 
 def Remainder(m: int):
-    numbers = list(range(0,101))
+    numbers = list(range(0,51))
     numbersSet = Set(numbers)
     result = Relation([])
     for ni1 in numbers:
@@ -224,11 +226,42 @@ def equivalenceClasses(relation: Relation, set: Set):
             b = element[1]
             for i in range(len(classes)):
                 if a in classes[i] or b in classes[i]:
-                        classes[i].__add__(element)
+                        # classes[i].__add__(element)
+                        classes[i] = classes[i] | Set([element])
                         found = True
                         break
             if not found:
-                classes.__add__(Set([(element)]))
+                # classes.__add__(Set([(element)]))
+                classes = classes | Set([Set([element])])
         return classes
     else:
         print("Relation ist keine Äquivalenzrelation")
+
+
+def Residueclassring(m: int):
+    remainder = Remainder(m)
+    restklassenring = Set([])
+    for relation in remainder:
+        # if relation[0] >= relation[1]:
+            if relation[0] != len(restklassenring) - 1:
+                # restklassenring.__add__(Set([relation[0]]))
+                if len(restklassenring) == m:
+                    return restklassenring
+                restklassenring = restklassenring | Set([Set([relation[0]])])
+            else:
+                # restklassenring[relation[0]].__add__(relation[1])
+                restklassenring[relation[0]] = restklassenring[relation[0]] | Set([relation[1]])
+
+def findClass(rkr: Set, n: int):
+    for klasse in rkr:
+        if n in klasse:
+            return klasse[0]
+def RKAdd(a: int, b: int, residueclass: Set):
+    m = len(residueclass)
+    c = (a + b) % m
+    return residueclass[c]
+
+def RKMult(a: int, b: int, residueclass: Set):
+    m = len(residueclass)
+    c = (a * b) % m
+    return residueclass[c]

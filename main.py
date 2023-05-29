@@ -112,11 +112,17 @@ ordersEqual = s.Orders("equal")
 print(ordersEqual)
 print(ordersEqual.checkEquivalenceRelation(s.Set(list(range(0,101)))))
 
-print("Restklassenring")
+print("Restklassen")
 rest5 = s.Remainder(5)
 print(rest5)
-print(rest5.checkEquivalenceRelation(s.Set(list(range(0,101)))))
+print(rest5.checkEquivalenceRelation(s.Set(list(range(0,51)))))
 
-
-
+print("Äquvalenzklassen")
 print(s.equivalenceClasses(s.Relation([(1,1),(1,2),(2,2),(2,1),(3,3),(3,4),(4,4),(4,3)]), s.Set([1,2,3,4])))
+
+print("Restklassenring")
+RKR = s.Residueclassring(5)
+print(RKR)
+print(s.findClass(RKR, 8))
+print(s.RKAdd(9,5,RKR))
+print(s.RKMult(2,3,RKR))
