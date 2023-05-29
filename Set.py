@@ -216,7 +216,6 @@ def Remainder(m: int):
 
 
 
-#Verstehe nicht warum das nicht funktioniert
 def equivalenceClasses(relation: Relation, set: Set):
     if relation.checkEquivalenceRelation(set):
         classes = Set([])
@@ -225,7 +224,8 @@ def equivalenceClasses(relation: Relation, set: Set):
             a = element[0]
             b = element[1]
             for i in range(len(classes)):
-                if a in classes[i] or b in classes[i]:
+                for relation in classes[i]:
+                    if a in relation or b in relation:
                         # classes[i].__add__(element)
                         classes[i] = classes[i] | Set([element])
                         found = True
