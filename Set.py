@@ -182,7 +182,7 @@ def Orders(type: str):
         for ni1 in numbers:
             for ni2 in numbers:
                 # print("test")
-                if  numbersSet[ni1] <= numbersSet[ni2]:
+                if numbersSet[ni1] <= numbersSet[ni2]:
                     result.__add__(Relation([(numbersSet[ni1], numbersSet[ni2])]))
                     # print("test2")
         return result
